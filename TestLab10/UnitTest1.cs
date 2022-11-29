@@ -1,5 +1,5 @@
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace TestLab10
 {
@@ -11,7 +11,8 @@ namespace TestLab10
         }
         private IWebDriver _webDriver { get; set; } = null!;
         private string _driverPath { get; set; } = @"E:\WebDrivers\Chrome";
-        private string _flightNumber = "2230";
+        private string _flightNumber = "927";
+        private string _cityOfDestination = "Берлин";
 
         [SetUp]
         public void SetUp()
@@ -33,6 +34,14 @@ namespace TestLab10
         {
             var lufthansaPage = new LufthansaPageObject(_webDriver);
             lufthansaPage.FlightStatusCheck(_flightNumber);
+            TearDown();
+        }
+
+        [Test]
+        public void AvailableHotelsCheck()
+        {
+            var lufthansaPage = new LufthansaPageObject(_webDriver);
+            lufthansaPage.AvailableHotelsCheck(_cityOfDestination);
             TearDown();
         }
     }
